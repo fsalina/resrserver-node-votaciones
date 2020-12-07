@@ -6,13 +6,13 @@ const uuidv1 = require("uuid/v1");
 const userSchema = new mongoose.Schema(
     {
         name:{
-            type: stringify,
+            type: String,
             trim: true,
             required: true,
             maxlength: 32
         },
         rut:{
-            type: string,
+            type: String,
             require: true,
             maxlength: 10
         },
@@ -21,27 +21,27 @@ const userSchema = new mongoose.Schema(
             require: true
         },
         email:{
-            type: string,
+            type: String,
             trim: true,
             required: true,
             unique: true
         },
         hashed_password:{
-            type: string,
+            type: String,
             required: true
         },
         region:{
-            type: string,
+            type: String,
             trim: true,
             required: true
         },
         ciudad:{
-            type: string,
+            type: String,
             trim: true,
             required: true
         },
         comuna:{
-            type: string,
+            type: String,
             trim: true,
             required: true
         },
@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
 
 // virtual field
 userSchema
@@ -72,19 +73,24 @@ userSchema
 // schemas methods
 userSchema.methods = {
     authenticate: function(plainText) {
+        console.log(this.encryptPassword(plainText));
+        console.log(this.encryptPassword(this.hashed_password));
         return this.encryptPassword(plainText) === this.hashed_password;
     },
 
     encryptPassword: function(password) {
+        console.log(password);
         if (!password) return "";
         try {
             return crypto
                 .createHmac("sha1", this.salt)
                 .update(password)
                 .digest("hex");
+                
         } catch (err) {
             return "";
         }
+       
     }
 };
 

@@ -10,14 +10,13 @@ require("dotenv").config();
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-/*
+
 const authRoutes = require("./routes/auth");
+const candidatoRoutes = require("./routes/candidato");
+const eleccionesRoutes = require("./routes/elecciones");
+const sufraganteRoutes = require("./routes/sufragante");
 const userRoutes = require("./routes/user");
-const categoryRoutes = require("./routes/category");
-const productRoutes = require("./routes/product");
-const braintreeRoutes = require("./routes/braintree");
-const orderRoutes = require("./routes/order");
-*/
+
 // app - express
 const app = express();
 
@@ -45,19 +44,19 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
-/*
+
 // Extended: https://swagger.io/specification/#infoObject
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
             version: "1.0.0",
-            title: "Ecommerce API",
-            description: "Ecommerce API Information",
+            title: "Votaciones API",
+            description: "votaciones API Information",
             contact: {
-                name: "miguel_dev"
+                name: "fabio_dev"
             },
-            servers: ["http://localhost:8001"]
+            servers: ["http://localhost:8000"]
         }
     },
     // definition the apis with swagger 
@@ -67,14 +66,14 @@ const swaggerOptions = {
 // final definitions with swagger-express
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-*/
+
 /* routes middlewares */
-/*app.use("/api", authRoutes);
+app.use("/api", authRoutes);
 app.use("/api", userRoutes);
-app.use("/api", categoryRoutes);
-app.use("/api", productRoutes);
-app.use("/api", braintreeRoutes);
-app.use("/api", orderRoutes); */
+app.use("/api", sufraganteRoutes);
+app.use("/api", eleccionesRoutes);
+app.use("/api", candidatoRoutes);
+
 
 // port
 const port = process.env.PORT || 8000;

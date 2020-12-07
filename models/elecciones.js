@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const eleccionesSchema = new mongoose.Schema(
     {
         name:{
-            type: string,
+            type: String,
             trim: true,
             required: true,
             maxlength: 100
@@ -24,4 +24,4 @@ const eleccionesSchema = new mongoose.Schema(
 
 
 
-module.exports = mongoose.model("Elecciones", userSchema);
+module.exports = mongoose.model("Elecciones", eleccionesSchema);

@@ -21,6 +21,6 @@ const vosSchema = new mongoose.Schema(
             type: string,
             trim: true,
             required: true
-        },
+        }
     }
 )
