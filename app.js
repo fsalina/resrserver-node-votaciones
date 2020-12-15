@@ -16,6 +16,7 @@ const candidatoRoutes = require("./routes/candidato");
 const eleccionesRoutes = require("./routes/elecciones");
 const sufraganteRoutes = require("./routes/sufragante");
 const userRoutes = require("./routes/user");
+const partidoRoutes = require("./routes/partido");
 
 // app - express
 const app = express();
@@ -40,6 +41,7 @@ db();
 
 // middlewares
 app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
@@ -73,6 +75,7 @@ app.use("/api", userRoutes);
 app.use("/api", sufraganteRoutes);
 app.use("/api", eleccionesRoutes);
 app.use("/api", candidatoRoutes);
+app.use("/api", partidoRoutes);
 
 
 // port

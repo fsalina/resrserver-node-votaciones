@@ -25,7 +25,13 @@ exports.userSignupValidator = (req, res, next) => {
 exports.sufraganteCreateValidator = (req, res, next) => {
     req.check("run", "Name is required").notEmpty();
     req.check("nombre", "nombre is required").notEmpty();
+    req.check("circunscripcion", "circunscripcion is required").notEmpty();
+    req.check("comuna", "comuna is required").notEmpty();
+    req.check("provincia", "provincia is required").notEmpty();
+    req.check("region", "region is required").notEmpty();
+    req.check("habilitado", "habilitado is required").notEmpty();
    
+
     const errors = req.validationErrors();
     if (errors) {
         const firstError = errors.map(error => error.msg)[0];

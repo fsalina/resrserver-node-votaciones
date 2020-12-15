@@ -4,32 +4,36 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 
 
 exports.crearElecciones = (req, res) =>{
-    let form = new formidable.IncomingForm();
-    form.keepExtensions = true;
-
-    form.parse(req, (err, fields) =>{
-        //check all fields
-        const{
-            name,
-            inicio,
-            fin
-        } = fields;
-
-        if( !name || !inicio || !fin){
-            return res.status(400).json({
-                error: "All fields are required"
-            });
-        }
-    });
-
-    let elecciones = new Elecciones(fields);
+    
+    let data = req.body;
+    const elecciones = new Elecciones(data);      
+  
+  //  console.log("Guardar elecciones");
+  //  console.log(elecciones);
     elecciones.save((err, result) =>{
         if(err){
             return res.status(400).json({
                 error: errorHandler(err)
+                
             });
         }
         res.json(result);
     });
 
 };
+
+exports.estadoEleccion = (req, res, next) => {
+      let activa = true;
+      Elecciones.findOne( {activa}, (err, elecciones) =>{
+          if (err || !elecciones){
+              return res.status(400).json({
+                  error: "Elecciones no encontrada"
+              });
+          }
+  
+          return res.json(elecciones);
+          next();
+  
+      }); 
+         
+  };

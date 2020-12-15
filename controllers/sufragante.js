@@ -1,5 +1,7 @@
 const Sufragante = require("../models/sufragante");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const { sufraganteCreateValidator } = require("../validator");
+const sufragante = require("../models/sufragante");
 
 
 exports.create = (req, res) => {
@@ -16,12 +18,12 @@ exports.create = (req, res) => {
                         habilitado: req.body.habilitado
                          };      
         const sufragante = new Sufragante(data);
-        console.log(sufragante);
+      //  console.log(sufragante);
         sufragante.save();
 
         res.sendStatus(201);
     } catch (error) {
-        console.log("Error de no se que chucha")
+        
         res.status(500).json({ msg: 'Se ha producido un error. Por favor, inténtelo más tarde.' });
     }
 
@@ -52,30 +54,39 @@ exports.create = (req, res) => {
 
 // middlewares rest
 exports.listAll = (req, res) => {
-    console.log("Lista todos sufragantes")
-    Sufragante.find().exec((err, data) => {
+    //console.log("Lista todos sufragantes");
+    Sufragante.find().exec((err, sufragante) => {
         if (err) {
             return res.status(404).json({
                 error: "Sufragante does not exist"
             });
         }
-        req.Sufragante = sufragante;        
+        res.json(sufragante);    
     });
 };
 
-exports.listSufragante = (req, res, id, data) =>{
-    Sufragante.find(id).exec((err, data) =>{
-        if(err){
-            return res.status(404).json({
-                error: "does not data"
+
+
+exports.SufraganteByRut = (req, res, next, run) => {
+  // console.log(`Sufragante x Rut ${run}`);
+    Sufragante.findOne( {run}, (err, sufragante) =>{
+        if (err || !sufragante){
+            return res.status(400).json({
+                error: "Sufragante no encontrado"
             });
         }
-        req.Sufragante = sufragante;
-    });
-    next();
+
+        return res.json(sufragante);
+        next();
+
+    }); 
+       
 };
 
-
+exports.read = (req, res) => {    
+   // console.log("read sufragante");
+    return res.json(req.sufragante);
+};
 
 
 

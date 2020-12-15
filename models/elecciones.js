@@ -16,6 +16,10 @@ const eleccionesSchema = new mongoose.Schema(
         fin:{
             type: Date,
             required: true
+        },
+        activa:{
+            type: Boolean,
+            required: true
         }
 
     },

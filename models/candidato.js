@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { ObjectId } = mongoose.Schema;
 
 const candidatoSchema = new mongoose.Schema(
     {
@@ -27,6 +27,11 @@ const candidatoSchema = new mongoose.Schema(
         comuna:{
             type: String,
             trim: true
+        },
+        partido: {
+            type: ObjectId,
+            ref: "Partido",
+            required: true
         },
         photo: {
             data: Buffer,
