@@ -133,3 +133,11 @@ exports.list = (req, res) => {
         res.json(data);
     });
 };
+
+exports.photo = (req, res, next) => {
+    if (req.candidato.photo.data) {
+        res.set("Content-Type", req.candidato.photo.contentType);
+        return res.send(req.candidato.photo.data);
+    }
+    next();
+};

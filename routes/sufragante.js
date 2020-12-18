@@ -6,7 +6,8 @@ const {
     SufraganteByRut,
     read,
     create,
-    remove
+    remove,
+    deshabilitar
 }= require("../controllers/sufragante");
 const { sufraganteCreateValidator } = require("../validator");
 

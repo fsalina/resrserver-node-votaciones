@@ -17,6 +17,7 @@ const eleccionesRoutes = require("./routes/elecciones");
 const sufraganteRoutes = require("./routes/sufragante");
 const userRoutes = require("./routes/user");
 const partidoRoutes = require("./routes/partido");
+const votoRoutes = require("./routes/voto");
 
 // app - express
 const app = express();
@@ -76,6 +77,7 @@ app.use("/api", sufraganteRoutes);
 app.use("/api", eleccionesRoutes);
 app.use("/api", candidatoRoutes);
 app.use("/api", partidoRoutes);
+app.use("/api", votoRoutes);
 
 
 // port

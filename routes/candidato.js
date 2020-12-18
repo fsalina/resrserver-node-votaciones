@@ -37,7 +37,7 @@ router.get("/candidatos", list);
 //router.get("/candidatos/search", listSearch);
 //router.get("/candidatos/partidos", listPartidos);
 //router.post("/candidatos/by/search", listBySearch);
-//router.get("/candidatos/photo/:candidatoId", photo);
+router.get("/candidato/photo/:candidatoId", photo);
 
 
 // params

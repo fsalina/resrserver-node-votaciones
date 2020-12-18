@@ -25,30 +25,40 @@ exports.create = (req, res) => {
     } catch (error) {
         
         res.status(500).json({ msg: 'Se ha producido un error. Por favor, inténtelo más tarde.' });
-    }
+    }   
+    
+};
 
-   /* const sufragante = new Sufragante(req.body);
- 
+exports.ishabilitado = (req, res, next) =>{
+
+    if (! req.profile.habilitado ) { // el profile es el documento o Schema admin es 1
+        return res.status(401).json({
+            error: "sufragante no habilitado"
+        });
+    } 
+    next();
+};
+
+//En caso de que el sufragante este habilitado lo deshabilito
+exports.deshabilitar = (req, res, next ) => {
+    console.log("llega a deshabilitar");
+    const sufragante = req.profile;
     console.log(sufragante);
-    console.log("llego aca");
-  
-    sufragante.save((err, sufragante) => {
+    sufragante.habilitado = "false";
+
+    console.log(sufragante.habilitado);
+    sufragante.save((err, data) => {
         if (err) {
-            console.log("error de no se que chucha");
-            console.log(err);
-           
-            return res.status(400).json({
-                error: errorHandler(err)
-            });
+             return res.status(400).json({
+                 error: errorHandler(err)
+             });
         }
-       
-        res.json({ 
-                sufragante 
-            });
+        res.json({
+            mensaje: "Sufragio OK"
+        });
     });
-    */
-    
-    
+  // next();
+  
 };
 
 
@@ -77,14 +87,29 @@ exports.SufraganteByRut = (req, res, next, run) => {
         }
 
         return res.json(sufragante);
-        next();
+       
 
     }); 
        
 };
 
+exports.SufraganteforValidation = (req, res, next, run) => {
+    // console.log(`Sufragante x Rut ${run}`);
+      Sufragante.findOne( {run}, (err, sufragante) =>{
+          if (err || !sufragante){
+              return res.status(400).json({
+                  error: "Sufragante no encontrado"
+              });
+          }
+  
+         req.profile = sufragante;
+         next();            
+  
+      });          
+  };
+
 exports.read = (req, res) => {    
-   // console.log("read sufragante");
+  //  console.log("read sufragante");
     return res.json(req.sufragante);
 };
 

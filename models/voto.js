@@ -1,26 +1,13 @@
 const mongoose = require("mongoose");
 
-const vosSchema = new mongoose.Schema(
+
+const votoSchema = new mongoose.Schema(
     {
-        candidato:{type: ObjectId, ref: "Candidato"},
+        nomCandidato:{type: String, required: true},
         blanco:{//registro un voto en blanco
-            type: string,
-            trim: true
-        },
-        region:{
-            type: string,
-            trim: true,
-            required: true
-        },
-        ciudad:{
-            type: string,
-            trim: true,
-            required: true
-        },
-        comuna:{
-            type: string,
-            trim: true,
-            required: true
+            type: String            
         }
     }
 )
+
+module.exports = mongoose.model("Voto", votoSchema);
