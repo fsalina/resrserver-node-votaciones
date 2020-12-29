@@ -7,7 +7,8 @@ const {
     read,
     create,
     remove,
-    deshabilitar
+    deshabilitar,
+    sufraganteRun
 }= require("../controllers/sufragante");
 const { sufraganteCreateValidator } = require("../validator");
 
@@ -19,7 +20,7 @@ const { userById } = require("../controllers/user");
  * @swagger
  * /api/sufragante/list:
  *  get:
- *    summary: list sufragante ByID
+ *    summary: list sufragante byRut
  *    description: Use to list sufragante
  *    responses:
  *      "200":
@@ -55,9 +56,15 @@ router.post("/sufragante/create/:userId", requireSignin, isAuth, isAdmin, sufrag
 /**
  * @swagger
  * /api/sufragante/delete:
- *  get:
+ *  delete:
  *    summary: delete sufragante
  *    description: Use for delete sufragantes
+ *    parameters:
+ *      - in: path
+ *        name: userId
+ *        type: string
+ *        required: true
+ *        description: userId for sufragante
  *    responses:
  *      "200":
  *        description: A successful response
@@ -72,6 +79,6 @@ router.delete(
 
 // params
 router.param("userId", userById);
-router.param("sufraganteRun", SufraganteByRut);
+router.param("sufraganteRun", sufraganteRun);
 
 module.exports = router;

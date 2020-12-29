@@ -28,8 +28,8 @@ const{ SufraganteforValidation, ishabilitado, deshabilitar } = require("../contr
  *          schema:
  *            properties:
  *              candidato:
- *                  type: ObjectsID
- *                  description: ID Candidato
+ *                  type: string
+ *                  description: nombre y apellido candidato
  *              blanco:
  *                  type: string
  *                  description: boto blanco
@@ -40,8 +40,19 @@ const{ SufraganteforValidation, ishabilitado, deshabilitar } = require("../contr
  *         description: A bad request response
  */
 router.post("/voto/sufragar/:sufraganteRun", ishabilitado, createSufragio, deshabilitar);
-  
-router.get("/voto/countVotosByComuna", countVotos);
+
+/**
+ * @swagger
+ * /api//voto/countVotosAll:
+ *  get:
+ *    summary: cuenta votos x comuna
+ *    description: entrega el numero total de votos
+ *    responses:
+ *      "200":
+ *        description: A successful response
+ */  
+router.get("/voto/countVotosAll", countVotos);
+
 router.get("/voto/countVotosCandidato", countVotosCandidato);
 
 

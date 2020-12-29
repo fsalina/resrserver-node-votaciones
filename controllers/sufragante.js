@@ -1,7 +1,7 @@
 const Sufragante = require("../models/sufragante");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 const { sufraganteCreateValidator } = require("../validator");
-const sufragante = require("../models/sufragante");
+
 
 
 exports.create = (req, res) => {
@@ -41,12 +41,12 @@ exports.ishabilitado = (req, res, next) =>{
 
 //En caso de que el sufragante este habilitado lo deshabilito
 exports.deshabilitar = (req, res, next ) => {
-    console.log("llega a deshabilitar");
+   // console.log("llega a deshabilitar");
     const sufragante = req.profile;
-    console.log(sufragante);
+   // console.log(sufragante);
     sufragante.habilitado = "false";
 
-    console.log(sufragante.habilitado);
+   // console.log(sufragante.habilitado);
     sufragante.save((err, data) => {
         if (err) {
              return res.status(400).json({
@@ -93,6 +93,22 @@ exports.SufraganteByRut = (req, res, next, run) => {
        
 };
 
+exports.sufraganteRun = (req, res, next) => {
+    const sufragante = req.body;
+    const run = sufragante.run;
+   // console.log(sufragante._id);
+
+    Sufragante.findOne( {run}, (err, sufragante) =>{
+        if (err || !sufragante) {
+            return res.status(400).json({
+                error: "Sufragante not found"
+            });
+        }
+        req.profile = sufragante;
+        next();
+    });
+};
+
 exports.SufraganteforValidation = (req, res, next, run) => {
     // console.log(`Sufragante x Rut ${run}`);
       Sufragante.findOne( {run}, (err, sufragante) =>{
@@ -129,8 +145,11 @@ exports.update = (req, res) => {
 };
 
 exports.remove = (req, res) => {
-    const sufragante = req.sufragante;
-    sufragante.remove((err, data) => {
+    
+    const sufragante = req.body;
+    console.log(sufragante);
+    const run = sufragante.run
+    Sufragante.deleteOne( { run }, (err, sufragante) =>{
         if (err) {
             return res.status(400).json({
                 error: errorHandler(err)

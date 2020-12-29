@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "5d02d1b5-cb65-495e-a1dd-10705d40eb64",
+		"name": "elecciones",
+		"description": "colecciones para el proyecto backend.node-elecciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"salinas.fabio@gmail.com\",\r\n    \"password\" : \"hola2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signin"
+					]
+				},
+				"description": "signin"
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"lunes\",\r\n    \"rut\" : \"17666165-8\",\r\n    \"nacimiento\" : \"1991-04-09\",\r\n    \"email\" : \"lunes@gmail.com\",\r\n    \"password\" : \"hola2022\",\r\n    \"region\" : \"Metropolitana\",\r\n    \"ciudad\" : \"Santiago\",\r\n    \"comuna\" : \"San Miguel\",\r\n    \"salt\" : \"\",\r\n    \"role\" : 1,\r\n    \"habilitado\" : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup"
+					]
+				},
+				"description": "registro"
+			},
+			"response": []
+		},
+		{
+			"name": "List All sugragantes",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/sufragante/listAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sufragante",
+						"listAll"
+					]
+				},
+				"description": "List all sufragantes"
+			},
+			"response": []
+		},
+		{
+			"name": "ListSufraganteRut",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"host": true,
+					"content-length": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/sufragante/listSufraganteRun/11754864-3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sufragante",
+						"listSufraganteRun",
+						"11754864-3"
+					]
+				},
+				"description": "Lista un sufragante por Rut.. Esto se utiliza cuando un sufragante ingresa su Rut previo a votar... "
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Sufragante",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM1MmUzMTQ3Y2Q1NzU1YjhkYTdjODAiLCJpYXQiOjE2MDc1MjcwMTR9.stDw74v8J3eqZxOpciRwMXTuZa4GmjgbgY084mBAztY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n    \"run\" : \"11754864-3\",\r\n    \"nombre\" : \"Pedro Prueba\",\r\n    \"circunscripcion\" : \"San Miguel\",\r\n    \"comuna\" : \"San Miguel\",\r\n    \"provincia\" : \"Santiago\",\r\n    \"region\" : \"Metropolitana\",\r\n    \"pais\" : \"Chile\",\r\n    \"habilitado\" : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/sufragante/create/5fc52e3147cd5755b8da7c80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sufragante",
+						"create",
+						"5fc52e3147cd5755b8da7c80"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Elecciones",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM1MmUzMTQ3Y2Q1NzU1YjhkYTdjODAiLCJpYXQiOjE2MDc1MjcwMTR9.stDw74v8J3eqZxOpciRwMXTuZa4GmjgbgY084mBAztY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Elecciones de Alcalde\",\r\n    \"inicio\": \"12-12-2020\",\r\n    \"fin\": \"12-01-2021\",\r\n    \"activa\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/elecciones/create/5fc52e3147cd5755b8da7c80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"elecciones",
+						"create",
+						"5fc52e3147cd5755b8da7c80"
+					]
+				},
+				"description": "Request for create elecciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar  Eleccion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/elecciones/consultaEleccion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"elecciones",
+						"consultaEleccion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear candidato",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM1MmUzMTQ3Y2Q1NzU1YjhkYTdjODAiLCJpYXQiOjE2MDc1MjcwMTR9.stDw74v8J3eqZxOpciRwMXTuZa4GmjgbgY084mBAztY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Luis Sanhueza",
+							"type": "text"
+						},
+						{
+							"key": "cargo",
+							"value": "Alcalde",
+							"type": "text"
+						},
+						{
+							"key": "region",
+							"value": "Metropolitana",
+							"type": "text"
+						},
+						{
+							"key": "ciudad",
+							"value": "santiago",
+							"type": "text"
+						},
+						{
+							"key": "comuna",
+							"value": "san miguel",
+							"type": "text"
+						},
+						{
+							"key": "partido",
+							"value": "5fd823051affc246c44ff409",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/DELL/Documents/Curso Node JS/restserver-node-votaciones/imagenes/Luis Sanhueza.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/candidato/create/5fc52e3147cd5755b8da7c80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"candidato",
+						"create",
+						"5fc52e3147cd5755b8da7c80"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Partido",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM1MmUzMTQ3Y2Q1NzU1YjhkYTdjODAiLCJpYXQiOjE2MDc1MjcwMTR9.stDw74v8J3eqZxOpciRwMXTuZa4GmjgbgY084mBAztY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Frente Amplio\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/partido/create/5fc52e3147cd5755b8da7c80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"partido",
+						"create",
+						"5fc52e3147cd5755b8da7c80"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Partidos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/partido/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"partido",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear sufragio",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomCandidato\": \"Matias Freire\", \r\n    \"blanco\": \"1\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/voto/sufragar/11754864-3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"voto",
+						"sufragar",
+						"11754864-3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Count all votos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/voto/countVotosAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"voto",
+						"countVotosAll"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": " Entrega el numero total de votos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/voto/countVotosAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"voto",
+								"countVotosAll"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-t09e6UYUlbpcpMcqcQiiOQTCegU\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 29 Dec 2020 03:37:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "79"
+				}
+			]
+		},
+		{
+			"name": "Count votos candidato",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/voto/countVotosCandidato",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"voto",
+						"countVotosCandidato"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "photo candidato",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/candidato/photo/5fd823211affc246c44ff40a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"candidato",
+						"photo",
+						"5fd823211affc246c44ff40a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete candidato",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmM1MmUzMTQ3Y2Q1NzU1YjhkYTdjODAiLCJpYXQiOjE2MDkyMDk1MTl9.V4C6hg0lt46fJyWqwjKwSgX8iIfqw3jPDBKBbrSzhc8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\" : \"5fea9f0930c1da3c48e81256\",\r\n    \"run\" : \"12280639-1\",\r\n    \"nombre\" : \"Maria Prueba\",\r\n    \"circunscripcion\" : \"San Miguel\",\r\n    \"comuna\" : \"San Miguel\",\r\n    \"provincia\" : \"Santiago\",\r\n    \"region\" : \"Metropolitana\",\r\n    \"pais\" : \"Chile\",\r\n    \"habilitado\" : true\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/sufragante/delete/5fc52e3147cd5755b8da7c80",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sufragante",
+						"delete",
+						"5fc52e3147cd5755b8da7c80"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
