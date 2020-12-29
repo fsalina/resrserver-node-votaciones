@@ -12,10 +12,10 @@ const{ SufraganteforValidation, ishabilitado, deshabilitar } = require("../contr
 
 /**
  * @swagger   
- * /api/signin: 
+ * /api/voto/sufragar: 
  *  post:
  *    summary: Sufragar
- *    description: Use to sufragar
+ *    description: usado para sufragar, queda deshabilitado despues de votar
  *    parameters:
  *      - in: path
  *        name: Run
@@ -27,7 +27,7 @@ const{ SufraganteforValidation, ishabilitado, deshabilitar } = require("../contr
  *        application/json:
  *          schema:
  *            properties:
- *              candidato:
+ *              nomCandidato:
  *                  type: string
  *                  description: nombre y apellido candidato
  *              blanco:
@@ -43,9 +43,9 @@ router.post("/voto/sufragar/:sufraganteRun", ishabilitado, createSufragio, desha
 
 /**
  * @swagger
- * /api//voto/countVotosAll:
+ * /api/voto/countVotosAll:
  *  get:
- *    summary: cuenta votos x comuna
+ *    summary: cuenta total de votos
  *    description: entrega el numero total de votos
  *    responses:
  *      "200":
@@ -53,6 +53,16 @@ router.post("/voto/sufragar/:sufraganteRun", ishabilitado, createSufragio, desha
  */  
 router.get("/voto/countVotosAll", countVotos);
 
+/**
+ * @swagger
+ * /api/voto/countVotosCandidato:
+ *  get:
+ *    summary: entrega el total de votos x candidato
+ *    description: entrega el totalde votos de cada candidato
+ *    responses:
+ *      "200":
+ *        description: A successful response
+ */ 
 router.get("/voto/countVotosCandidato", countVotosCandidato);
 
 
